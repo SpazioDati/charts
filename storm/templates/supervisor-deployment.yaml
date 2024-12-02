@@ -22,6 +22,9 @@ spec:
       labels:
         app: {{ template "storm.supervisor.name" . }}
         release: {{ .Release.Name }}
+        {{- with .Values.supervisor.extraLabels }}
+{{ toYaml . | indent 8 }}
+        {{- end }}
     spec:
       initContainers:
       - command: 
